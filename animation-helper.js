@@ -87,12 +87,12 @@ Template['Animate'].rendered = function(){
 
             // console.log('removed',node, node._animation_helper_isVisible);
 
-            if(node._animation_helper_isVisible) { //&& !$node.hasClass('animate') //indexOfElement !== -1 && 
-                
+            if(node._animation_helper_isVisible) { //&& !$node.hasClass('animate') //indexOfElement !== -1 &&
+
                 // add timeout in case the element wasn't removed
                 var timeoutId;
                 if(Meteor.isClient) {
-                    timeoutId = Meteor.setTimeout(function(){
+                    timeoutId = setTimeout(function(){
                         $node.remove();
                         $node = null;
                     }, 5000);
@@ -104,7 +104,7 @@ Template['Animate'].rendered = function(){
                     if (e.target === node) {
                         $node.off(e);
 
-                        Meteor.clearTimeout(timeoutId);
+                        clearTimeout(timeoutId);
 
                         delete node._animation_helper_isVisible;
                         $node.remove();
